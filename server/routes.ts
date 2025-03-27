@@ -40,6 +40,15 @@ const activeSessions: Record<string, {
 }> = {};
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Health check and ping endpoints
+  app.get("/health", (req, res) => {
+    res.status(200).json({ status: "ok" });
+  });
+
+  app.get("/api/ping", (req, res) => {
+    res.status(200).json({ status: "ok" });
+  });
+
   // Configure session middleware
   app.use(
     session({
